@@ -285,12 +285,11 @@ def evaluate_performance(system, T, f1, amplitude_cm, kr, xr_offset=25, xr_max=1
     u = lambda t: np.array([f(t), -f(t)])
     response = system.simulate(x0, time, u)
     max_reached = max(response[:,0] + response[:,1]) * 100
-    target = xr_max + xr_target_offset
     if plot_response:
         ani = animate_response(response, time, f, kr, xr_offset=xr_offset, xr_max=xr_max, xr_target_offset=xr_target_offset)
     else:
         ani = None
-    return max_reached - target, ani
+    return max_reached, ani
 
 
     
